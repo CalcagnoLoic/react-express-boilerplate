@@ -122,6 +122,7 @@ To launch the backend server, you must first position yourself within it. Once d
 > cd server #To enter the docker server folder
 > npm i
 > npm start
+```
 
 And.... happy codings!! 🥳
 
