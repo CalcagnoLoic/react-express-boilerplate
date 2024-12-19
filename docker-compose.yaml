@@ -1,0 +1,33 @@
+services:
+  client: 
+    build: ./client
+    volumes:
+      - ./client:/client
+    ports:
+      - 5173:5173
+    tty: true
+    stdin_open: true
+
+  server:
+    build: ./server
+    tty: true
+    stdin_open: true
+    volumes:
+      - ./server:/server
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+      - adminer
+
+  db:
+    image: mariadb
+    env_file:
+      - .env
+    volumes:
+      - ./server/database.sql:/docker-entrypoint-initdb.d/init.sql
+
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080
